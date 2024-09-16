@@ -58,6 +58,8 @@ body {
     padding-bottom:10px;
     background-color: rgb(127, 165, 255);
     margin:10px;
+    display: flex;
+    flex-direction: row;
 }
 .buttons img{
     width:30px;

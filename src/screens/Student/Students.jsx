@@ -33,6 +33,9 @@ function Students() {
                     <input type="text" placeholder="Search By Email"/>
                     <input type="text" placeholder="Search By ID"/>
                 </div>
+                <div className="addstudentbutton">
+                    <button><img src="./../../../src/assets/add.png" alt="" />Add Student</button>
+                </div>
                 <table border="1" cellPadding="10" cellSpacing="0">
                     <thead>
                         <tr>
