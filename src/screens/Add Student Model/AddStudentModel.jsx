@@ -6,12 +6,17 @@ const AddStudentModel = ({ show, onClose }) => {
     return (
         <div className="modal-backdrop">
             <div className="modal-content">
-                <h2>Modal Title</h2>
-                <p>This is the modal content!</p>
-                <button onClick={onClose}>Close</button>
+                <button onClick={onClose} className='closeButton'><img src="./../../../src/assets/close.png"  alt="" /></button>
+                <h2>Add Student</h2>
+                <input type="text" placeholder='Username' />
+                <input type="text" placeholder='Fullname' />
+                <input type="date" placeholder='Birthday' />
+                <input type="Phone" placeholder='Phone Number' />
+                <input type="text" placeholder='Email' />
+                <button className='save'>Save</button>
             </div>
         </div>
     );
 };
 
-export default Modal;
+export default AddStudentModel;

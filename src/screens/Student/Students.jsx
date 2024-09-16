@@ -1,6 +1,8 @@
 import { useState,useEffect } from "react";
 import { axiosUserInstance } from "../../axios/axiosUser";
 import './Students.css'
+import AddStudentModel from "../Add Student Model/AddStudentModel";
+
 function Students() {
     const [users, setUsers] = useState([]);
 
@@ -24,6 +26,16 @@ function Students() {
         
     };
 
+    const [showModal, setShowModal] = useState(false); 
+
+    const handleOpenModal = () => {
+        setShowModal(true);
+    };
+
+    const handleCloseModal = () => {
+        setShowModal(false);
+    };
+
     return (
         <>
             <div>
@@ -34,7 +46,8 @@ function Students() {
                     <input type="text" placeholder="Search By ID"/>
                 </div>
                 <div className="addstudentbutton">
-                    <button><img src="./../../../src/assets/add.png" alt="" />Add Student</button>
+                    <button><img src="./../../../src/assets/add.png" alt="" onClick={handleOpenModal}/>Add Student</button>
+                    <AddStudentModel show={showModal} onClose={handleCloseModal}></AddStudentModel>
                 </div>
                 <table border="1" cellPadding="10" cellSpacing="0">
                     <thead>
