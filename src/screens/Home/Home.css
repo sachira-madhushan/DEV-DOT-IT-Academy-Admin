@@ -1,0 +1,95 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.top{
+    height:50px;
+
+}
+
+h4{
+    font-size:24px;
+}
+#root {
+    max-width:100vw !important;
+    text-align: left !important;
+}
+
+body {
+    margin: 0;
+    display: block !important;
+    place-items: center;
+    min-width: 320px;
+    min-height: 100vh;
+}
+.logo{
+    float: left;
+    padding:0 !important;
+    margin: 0 !important;
+    height:0 !important;
+}
+.topright{
+    color: rgb(0, 0, 0);
+    float: right;
+    padding-top:0 !important;
+    padding-right:50px;
+}
+
+.menu{
+    /* background-color:black; */
+    box-shadow:0px 0px 5px rgba(118, 118, 118, 0.411);
+    width:20%;
+    text-align: left;
+
+    height:85vh;
+    border-radius:10px;
+    float: left;
+}
+
+.menu #link{
+    color: white !important;
+    text-decoration: none;
+    padding-left: 10px;
+    
+}
+
+.buttons{
+    padding-top:10px;
+    padding-bottom:10px;
+    background-color: rgb(127, 165, 255);
+    margin:10px;
+}
+.buttons img{
+    width:30px;
+    padding-left:10px;
+}
+.buttons:hover{
+    background-color: rgb(93, 141, 253);
+}
+
+.selectedButton{
+    background-color: rgb(50, 110, 251);
+}
+
+.content{
+    box-shadow:0px 0px 5px rgba(118, 118, 118, 0.411);
+    width:79%;
+    height:85vh;
+    float: right;
+    border-radius: 10px;
+}
+
+.box{
+    box-shadow:0px 0px 5px rgba(118, 118, 118, 0.411);
+    text-align: center;
+    padding:20px;
+    width:80%;
+    margin:15px auto;
+    
+}
+.box h6{
+
+}
+.box img{
+    width:50px;
+}
