@@ -2,13 +2,14 @@ import { useState, useEffect } from "react";
 import { axiosUserInstance } from "../../axios/axiosUser";
 import './Students.css'
 import AddStudentModel from "../Add Student Model/AddStudentModel";
-
+import EditStudentModel from "../Edit Student Model/EditStudentModel";
 function Students() {
     const [users, setUsers] = useState([]);
     const [searchId, setSearchId] = useState('');
     const [searchUsername, setSearchUsername] = useState('');
     const [searchEmail, setSearchEmail] = useState('');
     const [filteredUsers, setFilteredUsers] = useState([]);
+    const [userID, setUserID] = useState();
 
     useEffect(() => {
         axiosUserInstance.get('/all')
@@ -58,11 +59,17 @@ function Students() {
         
     };
 
-    const handleEdit = (id) => {
-        alert(`Edit user with id: ${id}`);
+    const [showEditStudentModel, setshowEditStudentModel] = useState(false);
 
+    const handleEdit = (id) => {
+        setUserID(id);
+        setshowEditStudentModel(true)
+        
     };
 
+    const handleEditCloseModel=()=>{
+        setshowEditStudentModel(false)
+    }
     const [showModal, setShowModal] = useState(false);
 
     const handleOpenModal = () => {
@@ -112,6 +119,7 @@ function Students() {
                                     <td>{user.u_email}</td>
                                     <td>
                                         <button onClick={() => handleEdit(user.u_id)}><img src="./../../../src/assets/edit.png" alt="" /></button>
+                                        <EditStudentModel show={showEditStudentModel} onClose={handleEditCloseModel} id={userID}/>
                                         <button onClick={() => handleDelete(user.u_id)}><img src="./../../../src/assets/delete.png" alt="" /></button>
                                     </td>
                                 </tr>
@@ -129,6 +137,7 @@ function Students() {
                                     <td>{user.u_email}</td>
                                     <td>
                                         <button onClick={() => handleEdit(user.u_id)}><img src="./../../../src/assets/edit.png" alt="" /></button>
+                                        <EditStudentModel show={showEditStudentModel} onClose={handleEditCloseModel} id={userID}/>
                                         <button onClick={() => handleDelete(user.u_id)}><img src="./../../../src/assets/delete.png" alt="" /></button>
                                     </td>
                                 </tr>
