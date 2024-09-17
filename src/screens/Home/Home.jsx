@@ -1,10 +1,11 @@
 import './Home.css'
 import { axiosInstance } from '../../axios/axiosAuth'
 import { useState, useEffect } from 'react';
-import { BrowserRouter, Link, Route, Router, Routes } from 'react-router-dom';
+import { BrowserRouter, Link, Route, Router, Routes ,useLocation} from 'react-router-dom';
 import Login from '../Login/Login';
 import Students from '../Student/Students';
 import { axiosUserInstance } from '../../axios/axiosUser';
+import Admins from '../Admin/Admins';
 
 function Home() {
     const [userName, setUsername] = useState('');
@@ -25,7 +26,7 @@ function Home() {
     }, []);
 
     useEffect(() => {
-        const fetchUserCount=async()=>{
+        const fetchUserCount = async () => {
             try {
                 const response = await axiosUserInstance.get("/count",)
                 setUserCount(response.data.count[0].numOfUsers)
@@ -36,6 +37,9 @@ function Home() {
         fetchUserCount()
     }, []);
 
+    const location = useLocation();
+
+    const isActive = (path) => location.pathname === path ? 'selectedButton' : '';
 
     return (
         <>
@@ -50,17 +54,17 @@ function Home() {
             <div className="body">
                 <div className="menu">
                     <br />
-                    <div className="buttons selectedButton"><img src="./../../../src/assets/student.png" alt="" /><Link id='link' to={'/students'}>Manage Students</Link><br /></div>
-                    <div className="buttons"><img src="./../../../src/assets/course.png" alt="" /><Link id='link'>Manage Courses</Link><br /></div>
-                    <div className="buttons"><img src="./../../../src/assets/enrollment.png" alt="" /><Link id='link'>Manage Enrollments</Link><br /></div>
-                    <div className="buttons"><img src="./../../../src/assets/admin.png" alt="" /><Link id='link'>Manage Admins</Link><br /></div>
+                    <div className={`buttons ${isActive('/students')}`}><img src="./../../../src/assets/student.png" alt="" /><Link id='link' to={'/students'}>Manage Students</Link><br /></div>
+                    <div className={`buttons ${isActive('/home')}`}><img src="./../../../src/assets/course.png" alt="" /><Link id='link'>Manage Courses</Link><br /></div>
+                    <div className={`buttons ${isActive('/home')}`}><img src="./../../../src/assets/enrollment.png" alt="" /><Link id='link'>Manage Enrollments</Link><br /></div>
+                    <div className={`buttons ${isActive('/admins')}`}><img src="./../../../src/assets/admin.png" alt="" /><Link id='link' to={'/admins'}>Manage Admins</Link><br /></div>
                     <div className="box">
-                    <img src="./../../../src/assets/graduating-student.png" alt="" />
+                        <img src="./../../../src/assets/graduating-student.png" alt="" />
                         <h5>Total Students</h5>
                         <h6>{userCount}</h6>
                     </div>
                     <div className="box">
-                    <img src="./../../../src/assets/online-learning.png" alt="" />
+                        <img src="./../../../src/assets/online-learning.png" alt="" />
                         <h5>Total Courses</h5>
                         <h6>1</h6>
                     </div>
@@ -69,6 +73,7 @@ function Home() {
 
                     <Routes>
                         <Route path='/students' element={<Students />} />
+                        <Route path='/admins' element={<Admins />} />
                     </Routes>
 
                 </div>
