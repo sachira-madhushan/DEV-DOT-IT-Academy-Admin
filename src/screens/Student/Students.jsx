@@ -45,8 +45,17 @@ function Students() {
     }, [searchId, searchUsername, searchEmail, users]);
 
 
-    const handleDelete = (id) => {
-        setUsers(users.filter(user => user.u_id !== id));
+    const handleDelete = async(id) => {
+        try {
+            const result=await axiosUserInstance.delete('/'+id);
+            if(result.status===200){
+                alert("User with ID:"+id+" delete!")
+                window.location.reload();
+            }
+        } catch (error) {
+            alert("Error while deleting user!")
+        }
+        
     };
 
     const handleEdit = (id) => {
