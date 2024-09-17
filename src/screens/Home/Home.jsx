@@ -4,9 +4,11 @@ import { useState, useEffect } from 'react';
 import { BrowserRouter, Link, Route, Router, Routes } from 'react-router-dom';
 import Login from '../Login/Login';
 import Students from '../Student/Students';
+import { axiosUserInstance } from '../../axios/axiosUser';
 
 function Home() {
     const [userName, setUsername] = useState('');
+    const [userCount, setUserCount] = useState(0);
 
     useEffect(() => {
         const fetchAdmin = async () => {
@@ -21,6 +23,19 @@ function Home() {
         }
         fetchAdmin();
     }, []);
+
+    useEffect(() => {
+        const fetchUserCount=async()=>{
+            try {
+                const response = await axiosUserInstance.get("/count",)
+                setUserCount(response.data.count[0].numOfUsers)
+            } catch (e) {
+                console.log("error");
+            }
+        }
+        fetchUserCount()
+    }, []);
+
 
     return (
         <>
@@ -42,7 +57,7 @@ function Home() {
                     <div className="box">
                     <img src="./../../../src/assets/graduating-student.png" alt="" />
                         <h5>Total Students</h5>
-                        <h6>1</h6>
+                        <h6>{userCount}</h6>
                     </div>
                     <div className="box">
                     <img src="./../../../src/assets/online-learning.png" alt="" />
