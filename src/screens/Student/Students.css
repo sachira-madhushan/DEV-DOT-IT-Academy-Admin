@@ -59,3 +59,9 @@ h1{
 .addstudentbutton button img{
     padding-right:10px;
 }
+
+.tablecontent{
+    width:100%;
+    height:55vh;
+    overflow-y:auto;
+}

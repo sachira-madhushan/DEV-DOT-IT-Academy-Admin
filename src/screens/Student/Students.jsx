@@ -49,6 +49,7 @@ function Students() {
                     <button><img src="./../../../src/assets/add.png" alt="" onClick={handleOpenModal}/>Add Student</button>
                     <AddStudentModel show={showModal} onClose={handleCloseModal}></AddStudentModel>
                 </div>
+                <div className="tablecontent">
                 <table border="1" cellPadding="10" cellSpacing="0">
                     <thead>
                         <tr>
@@ -78,6 +79,7 @@ function Students() {
                         ))}
                     </tbody>
                 </table>
+                </div>
             </div>
         </>
     )
