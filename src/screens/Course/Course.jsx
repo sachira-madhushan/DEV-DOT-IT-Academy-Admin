@@ -22,10 +22,32 @@ function Course() {
             });
     }, []);
 
+    useEffect(() => {
+
+        const filterUsers = () => {
+            let result = courses;
+
+            if (searchID) {
+                result = result.filter(user => user.c_id === parseInt(searchID));
+            }
+
+            if (searchCoursename) {
+                result = result.filter(user => user.c_title.includes(searchCoursename));
+            }
+
+            if (searchInstructor) {
+                result = result.filter(user => user.c_instructor.includes(searchInstructor));
+            }
+
+            setFilteredCourses(result);
+        };
+
+        filterUsers();
+    }, [searchID, searchCoursename, searchInstructor, courses]);
 
     const handleEdit = (id) => {
         //setUserID(id);
-        //setshowEditStudentModel(true)
+        ///setshowEditStudentModel(true)
 
     };
 
@@ -47,8 +69,8 @@ function Course() {
             <h1>Course List</h1>
             <div className="course-top">
                 <div className="searchBox">
-                    <input type="text" placeholder="Search By Username" onChange={(e) => setSearchCourseName(e.target.value)} />
-                    <input type="text" placeholder="Search By Email" onChange={(e) => setSearchInstructor(e.target.value)} />
+                    <input type="text" placeholder="Search By Course Name" onChange={(e) => setSearchCourseName(e.target.value)} />
+                    <input type="text" placeholder="Search By Instructor Name" onChange={(e) => setSearchInstructor(e.target.value)} />
                     <input type="text" placeholder="Search By ID" onChange={(e) => setSearchId(e.target.value)} />
                 </div>
                 <div className="addstudentbutton">
