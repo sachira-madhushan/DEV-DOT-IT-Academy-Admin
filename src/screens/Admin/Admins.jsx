@@ -83,7 +83,7 @@ function Admins() {
     return (
         <>
             <div>
-                <h1>User List</h1>
+                <h1>Admin List</h1>
                 <div className="searchBox">
                     <input type="text" placeholder="Search By Username" onChange={(e)=>setSearchUsername(e.target.value)}/>
                     <input type="text" placeholder="Search By Email" onChange={(e)=>setSearchEmail(e.target.value)}/>
