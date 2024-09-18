@@ -1,13 +1,26 @@
 import CourseModel from "../Course Model/CourseModel"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import './Course.css'
+import { axiosCourseInstance } from "../../axios/axiosCourse";
 function Course() {
 
     const [searchCoursename, setSearchCourseName] = useState('');
     const [searchInstructor, setSearchInstructor] = useState('');
     const [searchID, setSearchId] = useState('');
+    const [courses, setCourses] = useState([]);
+    const [filteredCourses, setFilteredCourses] = useState([]);
 
     const [showEditStudentModel, setshowEditStudentModel] = useState(false);
+    useEffect(() => {
+        axiosCourseInstance.get('/all')
+            .then(response => {
+                setCourses(response.data.course);
+            })
+            .catch(error => {
+                console.error('There was an error fetching the users!', error);
+            });
+    }, []);
+
 
     const handleEdit = (id) => {
         //setUserID(id);
@@ -44,11 +57,20 @@ function Course() {
             </div>
             <div className="courseContainer">
                 <div className="courseList">
-                    <CourseModel courseTitle="Game Development Sinahala Full Course" courseBanner="https://cdn.prod.website-files.com/5b651f8b5fc94c4e27470a81/622227fd2ce3cc0455a88166_blog-gamedev-fullsize.png" courseInstructor="J.P.Sachira Madhushan" coursePrice="2000" courseID={1} />
-                    <CourseModel courseTitle="Game Development Sinahala Full Course" courseBanner="https://cdn.prod.website-files.com/5b651f8b5fc94c4e27470a81/622227fd2ce3cc0455a88166_blog-gamedev-fullsize.png" courseInstructor="J.P.Sachira Madhushan" coursePrice="2000" courseID={1} />
-                    <CourseModel courseTitle="Game Development Sinahala Full Course" courseBanner="https://cdn.prod.website-files.com/5b651f8b5fc94c4e27470a81/622227fd2ce3cc0455a88166_blog-gamedev-fullsize.png" courseInstructor="J.P.Sachira Madhushan" coursePrice="2000" courseID={1} />
-                    <CourseModel courseTitle="Game Development Sinahala Full Course" courseBanner="https://cdn.prod.website-files.com/5b651f8b5fc94c4e27470a81/622227fd2ce3cc0455a88166_blog-gamedev-fullsize.png" courseInstructor="J.P.Sachira Madhushan" coursePrice="2000" courseID={1} />
+                    {
+                        filteredCourses.length > 0 ?
+                            filteredCourses.map(course => (
+                                <CourseModel key={course.c_id} courseTitle={course.c_title} courseBanner={course.c_banner} courseInstructor={course.c_instructor} coursePrice={course.c_price} courseID={course.c_id} />
 
+                            ))
+
+                            :
+
+                            courses.map(course => (
+
+                                <CourseModel key={course.c_id} courseTitle={course.c_title} courseBanner={course.c_banner} courseInstructor={course.c_instructor} coursePrice={course.c_price} courseID={course.c_id} />
+
+                            ))}
                 </div>
             </div>
         </>
