@@ -7,10 +7,12 @@ import Students from '../Student/Students';
 import { axiosUserInstance } from '../../axios/axiosUser';
 import Admins from '../Admin/Admins';
 import Course from '../Course/Course';
+import { axiosCourseInstance } from '../../axios/axiosCourse';
 
 function Home() {
     const [userName, setUsername] = useState('');
     const [userCount, setUserCount] = useState(0);
+    const [courseCount, setCourseCount] = useState(0);
 
     useEffect(() => {
         const fetchAdmin = async () => {
@@ -36,6 +38,18 @@ function Home() {
             }
         }
         fetchUserCount()
+    }, []);
+
+    useEffect(() => {
+        const fetchCourseCount = async () => {
+            try {
+                const response = await axiosCourseInstance.get("/count",)
+                setCourseCount(response.data.count[0].numberOfCourses)
+            } catch (e) {
+                console.log("error");
+            }
+        }
+        fetchCourseCount()
     }, []);
 
     const location = useLocation();
@@ -67,7 +81,7 @@ function Home() {
                     <div className="box">
                         <img src="./../../../src/assets/online-learning.png" alt="" />
                         <h5>Total Courses</h5>
-                        <h6>1</h6>
+                        <h6>{courseCount}</h6>
                     </div>
                 </div>
                 <div className="content">
