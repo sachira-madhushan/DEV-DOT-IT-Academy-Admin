@@ -2,6 +2,7 @@ import CourseModel from "../Course Model/CourseModel"
 import { useState, useEffect } from "react";
 import './Course.css'
 import { axiosCourseInstance } from "../../axios/axiosCourse";
+import AddCourseModel from "../Add Course Model/AddCourseModel";
 function Course() {
 
     const [searchCoursename, setSearchCourseName] = useState('');
@@ -34,11 +35,11 @@ function Course() {
     const [showModal, setShowModal] = useState(false);
 
     const handleOpenModal = () => {
-        //setShowModal(true);
+        setShowModal(true);
     };
 
     const handleCloseModal = () => {
-        //setShowModal(false);
+        setShowModal(false);
     };
 
     return (
@@ -52,7 +53,7 @@ function Course() {
                 </div>
                 <div className="addstudentbutton">
                     <button><img src="./../../../src/assets/add.png" alt="" onClick={handleOpenModal} />Add New Course</button>
-                    {/* <AddStudentModel show={showModal} onClose={handleCloseModal}></AddStudentModel> */}
+                    <AddCourseModel show={showModal} onClose={handleCloseModal}/>
                 </div>
             </div>
             <div className="courseContainer">
