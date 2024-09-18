@@ -1,0 +1,67 @@
+table{
+    border:none;
+    margin: 0 auto;
+    width:98%;
+}
+td,th{
+    border: none;
+    padding:10px;
+    border-bottom:1px solid rgba(117, 117, 117, 0.366);
+}
+button{
+    background-color:transparent;
+    border:none;
+    padding:3px;
+    margin:10px;
+    cursor: pointer;
+   
+}
+th{
+    background-color:rgba(145, 202, 255, 0.733);
+}
+
+tr:hover{
+    background-color:rgba(0, 132, 255, 0.103);
+}
+button:nth-child(1){
+
+}
+button img{
+    width:20px;
+}
+
+h1{
+    font-size:18px;
+    font-weight:bold;
+    padding:10px;
+}
+.searchBox{
+    display: flex;
+    justify-content: space-evenly;
+    box-shadow:0px 0px 5px rgba(118, 118, 118, 0.411);
+    width:96%;
+    margin: 15px auto;
+
+}
+.addstudentbutton{
+    float: right;
+    margin-right:2px;
+}
+.addstudentbutton button{
+    background-color:rgba(0, 162, 255, 0.475);
+    color: white;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center; 
+    justify-content: center;
+}
+.addstudentbutton button img{
+    padding-right:10px;
+}
+
+.tablecontent{
+    width:100%;
+    height:55vh;
+    overflow-y:auto;
+}
