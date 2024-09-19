@@ -8,6 +8,7 @@ import { axiosUserInstance } from '../../axios/axiosUser';
 import Admins from '../Admin/Admins';
 import Course from '../Course/Course';
 import { axiosCourseInstance } from '../../axios/axiosCourse';
+import EditCoursePage from '../Edit Course Page/EditCoursePage';
 
 function Home() {
     const [userName, setUsername] = useState('');
@@ -90,6 +91,7 @@ function Home() {
                         <Route path='/students' element={<Students />} />
                         <Route path='/admins' element={<Admins />} />
                         <Route path='/courses' element={<Course />} />
+                        <Route path='/course/edit/:id' element={<EditCoursePage />} />
                     </Routes>
 
                 </div>

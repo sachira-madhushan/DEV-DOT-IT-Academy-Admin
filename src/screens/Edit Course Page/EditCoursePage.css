@@ -1,0 +1,47 @@
+.container{
+    width:45%;
+    float:left;
+}
+
+.chapters-list{
+    width:45%;
+    float: right;
+    overflow-y: auto;
+}
+.app{
+    padding:10px;
+    width:100%;
+    display:flex;
+    justify-content: space-evenly;
+    height:80vh;
+}
+
+p{
+    color:black;
+    text-align: justify;
+
+}
+
+.chapter{
+    box-shadow:0px 0px 3px rgba(0, 0, 0, 0.188);
+    padding:10px;
+    margin:10px;
+
+}
+
+.chapter iframe{
+    height:250px;
+}
+
+.addchapter{
+    background-color:rgb(106, 106, 233);
+    color: white;
+    padding:10px 30px;
+    margin-left:0;
+}
+.deletecourse{
+    background-color:rgb(233, 106, 123);
+    color: white;
+    padding:10px 30px;
+    margin-left:0;
+}

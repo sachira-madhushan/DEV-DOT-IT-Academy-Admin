@@ -4,7 +4,8 @@ export const axiosCourseInstance=axios.create(
     {
         baseURL:"http://127.0.0.1:4000/api/course/",
         headers: {
-            'Content-Type': 'application/json', 
+            'Content-Type': 'application/json',
+            'Content-Security-Policy':"frame-src https://www.youtube.com;"
         },
     }
 )
