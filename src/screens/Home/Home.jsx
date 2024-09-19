@@ -9,6 +9,7 @@ import Admins from '../Admin/Admins';
 import Course from '../Course/Course';
 import { axiosCourseInstance } from '../../axios/axiosCourse';
 import EditCoursePage from '../Edit Course Page/EditCoursePage';
+import Enrollment from '../Entrollment/Enrollment';
 
 function Home() {
     const [userName, setUsername] = useState('');
@@ -72,7 +73,7 @@ function Home() {
                     <br />
                     <div className={`buttons ${isActive('/students')}`}><img src="./../../../src/assets/student.png" alt="" /><Link id='link' to={'/students'}>Manage Students</Link><br /></div>
                     <div className={`buttons ${isActive('/courses')}`}><img src="./../../../src/assets/course.png" alt="" /><Link id='link' to={'/courses'}>Manage Courses</Link><br /></div>
-                    <div className={`buttons ${isActive('/home')}`}><img src="./../../../src/assets/enrollment.png" alt="" /><Link id='link'>Manage Enrollments</Link><br /></div>
+                    <div className={`buttons ${isActive('/enrollment')}`}><img src="./../../../src/assets/enrollment.png" alt="" /><Link id='link' to="/enrollment">Manage Enrollments</Link><br /></div>
                     <div className={`buttons ${isActive('/admins')}`}><img src="./../../../src/assets/admin.png" alt="" /><Link id='link' to={'/admins'}>Manage Admins</Link><br /></div>
                     <div className="box">
                         <img src="./../../../src/assets/graduating-student.png" alt="" />
@@ -91,6 +92,7 @@ function Home() {
                         <Route path='/students' element={<Students />} />
                         <Route path='/admins' element={<Admins />} />
                         <Route path='/courses' element={<Course />} />
+                        <Route path='/enrollment' element={<Enrollment />} />
                         <Route path='/course/edit/:id' element={<EditCoursePage />} />
                     </Routes>
 
