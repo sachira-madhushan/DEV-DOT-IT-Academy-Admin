@@ -16,12 +16,25 @@ function Enrollment() {
         axiosCourseInstance.get('/enrollments')
             .then(response => {
                 setenrollments(response.data.enrollments);
+
             })
             .catch(error => {
                 console.error('There was an error fetching the users!', error);
             });
     }, []);
 
+    const formatDate = (date) => {
+        const dateObj = new Date(date);
+        const year = dateObj.getFullYear();
+        const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+        const day = String(dateObj.getDate()).padStart(2, '0');
+        const hours = String(dateObj.getHours()).padStart(2, '0');
+        const minutes = String(dateObj.getMinutes()).padStart(2, '0');
+
+        const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}`;
+
+        return formattedDate;
+    }
 
     useEffect(() => {
         axiosUserInstance.get('/all')
@@ -57,36 +70,36 @@ function Enrollment() {
         if (selectedCourse && selectedStudent) {
             const course = courses.find(c => c.c_id === selectedCourse.value);
             const student = students.find(s => s.u_id === selectedStudent.value);
-            
-            try{
-                const response=axiosCourseInstance.post("/asign",{
-                    c_id:course.c_id,
-                    u_id:student.u_id
+
+            try {
+                const response = axiosCourseInstance.post("/asign", {
+                    c_id: course.c_id,
+                    u_id: student.u_id
                 })
                 alert(`Successfully enrolled ${student.u_username} to ${course.c_title}`);
                 window.location.reload();
 
-            }catch(e){
+            } catch (e) {
                 alert("Error while enrolling!");
             }
 
-            
+
         } else {
             alert('Please select both a course and a student!');
         }
     };
 
-    const handleDelete = async(id) => {
+    const handleDelete = async (id) => {
         try {
-            const result=await axiosCourseInstance.delete('/enrollments/'+id);
-            if(result.status===200){
-                alert("Enrollment with ID:"+id+" delete!")
+            const result = await axiosCourseInstance.delete('/enrollments/' + id);
+            if (result.status === 200) {
+                alert("Enrollment with ID:" + id + " delete!")
                 window.location.reload();
             }
         } catch (error) {
             alert("Error while deleting enrollment!")
         }
-        
+
     };
 
     return (
@@ -132,17 +145,17 @@ function Enrollment() {
                     </thead>
                     <tbody>
                         {
-                                enrollments.map(enrollment => (
-                                    <tr key={enrollment.e_id}>
-                                        <td>{enrollment.e_id}</td>
-                                        <td>{enrollment.c_id}</td>
-                                        <td>{enrollment.u_id}</td>
-                                        <td>{enrollment.e_date}</td>
-                                        <td>
-                                            <button onClick={() => handleDelete(enrollment.e_id)}><img src="./../../../src/assets/delete.png" alt="" /></button>
-                                        </td>
-                                    </tr>
-                                ))}
+                            enrollments.map(enrollment => (
+                                <tr key={enrollment.e_id}>
+                                    <td>{enrollment.e_id}</td>
+                                    <td>{enrollment.c_id}</td>
+                                    <td>{enrollment.u_id}</td>
+                                    <td>{formatDate(enrollment.e_date)}</td>
+                                    <td>
+                                        <button onClick={() => handleDelete(enrollment.e_id)}><img src="./../../../src/assets/delete.png" alt="" /></button>
+                                    </td>
+                                </tr>
+                            ))}
                     </tbody>
                 </table>
             </div>
