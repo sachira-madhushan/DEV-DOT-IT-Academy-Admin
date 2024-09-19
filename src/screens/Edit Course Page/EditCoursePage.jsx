@@ -2,6 +2,7 @@ import './EditCoursePage.css'
 import { axiosCourseInstance } from '../../axios/axiosCourse';
 import { useEffect,useState } from 'react';
 import { useParams } from 'react-router-dom';
+import AddChapterModel from '../Add Chapter Model/AddChapterModel';
 function EditCoursePage() {
     const [data, setData] = useState({});
     const [course, setCourse] = useState({});
@@ -39,6 +40,29 @@ function EditCoursePage() {
 
         fetchCourseData();
     }, [id]);
+
+    const deleteCourse = async () => {
+        try {
+            const response = await axiosCourseInstance.delete(`/delete/${id}`);
+            alert("Course with ID:"+id+" deleted!")
+            window.history.back();
+        } catch (error) {
+            console.error("Error while deleting course", error);
+            alert("Error while deleting course")
+        }
+    };
+
+    const [showModal, setShowModal] = useState(false);
+
+    const handleOpenModal = () => {
+        setShowModal(true);
+    };
+
+    const handleCloseModal = () => {
+        setShowModal(false);
+    };
+
+
     return (
         <>
             <div className="app">
@@ -64,8 +88,9 @@ function EditCoursePage() {
                             </div>
                         </section>
                     </main>
-                    <button className='addchapter'>Add Chapter</button>
-                    <button className='deletecourse'>Delete Course</button>
+                    <button className='addchapter' onClick={handleOpenModal}>Add Chapter</button>
+                    <AddChapterModel show={showModal} onClose={handleCloseModal}/>
+                    <button className='deletecourse' onClick={deleteCourse}>Delete Course</button>
                 </div>
 
                 <div className="chapters-list">
