@@ -33,7 +33,7 @@ input {
     cursor: pointer;
 }
 
-p {
+.error {
     color: red;
     text-align: center;
     /* background-color: rgba(255, 0, 0, 0.11);

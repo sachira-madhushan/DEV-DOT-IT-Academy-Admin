@@ -31,7 +31,7 @@ function Login() {
                 <h2>Login</h2>
                 <input type="text" placeholder='Email' onChange={(e) => setEmail(e.target.value) } /><br />
                 <input type="password" placeholder='Password' onChange={(e) => setPassword(e.target.value)} /><br />
-                <p style={error?{display:'block'}:{display:'none'}}>Incorrect username or password</p>
+                <p style={error?{display:'block'}:{display:'none'}} className='error' >Incorrect username or password</p>
                 {/* <Link className='link'>Forgot password?</Link><br /> */}
                 <button className='loginButton' onClick={() => { loginFunction() }}>login</button>
             </div>

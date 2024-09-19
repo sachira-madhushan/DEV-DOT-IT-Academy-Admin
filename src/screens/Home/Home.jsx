@@ -58,6 +58,11 @@ function Home() {
 
     const isActive = (path) => location.pathname === path ? 'selectedButton' : '';
 
+    const logout=async()=>{
+        localStorage.clear();
+        window.location.reload();
+    }
+
     return (
         <>
             <div className="top">
@@ -66,6 +71,7 @@ function Home() {
                 </div>
                 <div className="topright">
                     <h3>Welcome ,{userName}</h3>
+                    <button><img src="./../../../src/assets/logout.png" alt="" width={120} onClick={logout} /></button>
                 </div>
             </div>
             <div className="body">
